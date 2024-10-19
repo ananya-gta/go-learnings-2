@@ -3,7 +3,7 @@ package main
 import (
 	"example.com/splitting_code_across_different_packages/fileOps"
 	"fmt"
-	
+	"github.com/Pallinder/go-randomdata"
 )
 
 func main() {
@@ -14,6 +14,7 @@ func main() {
 		panic("Application exited.")
 	}
 	fmt.Println("Welcome to Go Bank!")
+	fmt.Println("Reach us at: ", randomdata.PhoneNumber())
 	startBankApplication(accountBalance)
 }
 
