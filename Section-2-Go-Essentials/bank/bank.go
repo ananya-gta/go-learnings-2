@@ -1,6 +1,12 @@
 package main
 
 import "fmt"
+import "os"
+
+func writeBalanceToFile(balance float64) {
+	balanceText := fmt.Sprint(balance)
+	os.WriteFile("balance.txt", []byte(balanceText), 0644)
+}
 
 func main() {
 	var accountBalance = 1000.0
@@ -37,6 +43,7 @@ func startBankApplication(accountBalance float64) {
 				}
 				accountBalance += depositAmount
 				fmt.Println("Your current balance is: ", accountBalance)
+				writeBalanceToFile(accountBalance)
 			case 3:
 				fmt.Print("Enter withdraw amount: ")
 				var withdrawAmount float64
@@ -51,6 +58,7 @@ func startBankApplication(accountBalance float64) {
 				}
 				accountBalance -= withdrawAmount
 				fmt.Println("Your current balance is: ", accountBalance)
+				writeBalanceToFile(accountBalance)
 			default:
 				fmt.Print("Thankyou for visiting Go Bank !")
 				return
