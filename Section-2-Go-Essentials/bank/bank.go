@@ -2,6 +2,14 @@ package main
 
 import "fmt"
 import "os"
+import "strconv"
+
+
+func readBalanceFromFile() (float64){
+	data, _ := os.ReadFile("balance.txt")
+	balance, _:= strconv.ParseFloat(string(data), 64)
+	return balance
+}
 
 func writeBalanceToFile(balance float64) {
 	balanceText := fmt.Sprint(balance)
@@ -9,7 +17,7 @@ func writeBalanceToFile(balance float64) {
 }
 
 func main() {
-	var accountBalance = 1000.0
+	var accountBalance = readBalanceFromFile()
 	fmt.Println("Welcome to Go Bank!")
 	startBankApplication(accountBalance)
 }
