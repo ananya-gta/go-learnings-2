@@ -1,6 +1,12 @@
 package main
 
 import "fmt"
+import "os"
+
+func writeProfit(profit float64) {
+	profits := fmt.Sprint(profit)
+	os.WriteFile("profit.txt", []byte(profits), 0644)
+}
 
 func main() {
 
@@ -11,6 +17,7 @@ func main() {
 	ebt, profit, ratio := calculateProfit(revenue, expenses, taxRate)
 
 	printResult(ebt, profit, ratio)
+	writeProfit(profit)
 
 }
 
