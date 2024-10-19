@@ -29,6 +29,7 @@ func main() {
 	if err != nil {
 		fmt.Println("ERRRRRRRORR")
 		fmt.Println(err)
+		panic("Application exited.")
 	}
 	fmt.Println("Welcome to Go Bank!")
 	startBankApplication(accountBalance)
