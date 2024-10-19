@@ -1,31 +1,13 @@
 package main
 
-import "fmt"
-import "os"
-import "errors"
-import "strconv"
-
-func readBalanceFromFile() (float64, error) {
-	data, err := os.ReadFile("balance.txt")
-
-	if err != nil {
-		return 1000, errors.New("failed to find balance file")
-	}
-	balance, err := strconv.ParseFloat(string(data), 64)
-
-	if err != nil {
-		return 1000, errors.New("failed to parse stored balance value")
-	}
-	return balance, nil
-}
-
-func writeBalanceToFile(balance float64) {
-	balanceText := fmt.Sprint(balance)
-	os.WriteFile("balance.txt", []byte(balanceText), 0644)
-}
+import (
+	"example.com/splitting_code_across_different_packages/fileOps"
+	"fmt"
+	
+)
 
 func main() {
-	var accountBalance, err = readBalanceFromFile()
+	var accountBalance, err = fileOps.ReadFloatValueFromFile("balance.txt", 1000)
 	if err != nil {
 		fmt.Println("ERRRRRRRORR")
 		fmt.Println(err)
@@ -34,8 +16,6 @@ func main() {
 	fmt.Println("Welcome to Go Bank!")
 	startBankApplication(accountBalance)
 }
-
-
 
 func startBankApplication(accountBalance float64) {
 	for {
@@ -58,7 +38,7 @@ func startBankApplication(accountBalance float64) {
 			}
 			accountBalance += depositAmount
 			fmt.Println("Your current balance is: ", accountBalance)
-			writeBalanceToFile(accountBalance)
+			fileOps.WriteIntoFile(accountBalance, "balance.txt")
 		case 3:
 			fmt.Print("Enter withdraw amount: ")
 			var withdrawAmount float64
@@ -73,7 +53,7 @@ func startBankApplication(accountBalance float64) {
 			}
 			accountBalance -= withdrawAmount
 			fmt.Println("Your current balance is: ", accountBalance)
-			writeBalanceToFile(accountBalance)
+			fileOps.WriteIntoFile(accountBalance, "balance.txt")
 		default:
 			fmt.Print("Thankyou for visiting Go Bank !")
 			return
