@@ -1,13 +1,22 @@
-What are pointers ?
-Pointers are variabels taht store dthe value addresess instead of value
+>> What are pointers ?
+- Pointers are variabels taht store dthe value addresess instead of value
 
 age := 32
 when a variable is assigned a value, that value is stored in computer's memory 
 and the value automatically get's an address.
 
 ageAddress := &age
-using &, this operator is used to store the address of a value
+using &, this operator is used to get and store the address of a value
 
-What are the advantages of pointers ?
+>> What are the advantages of pointers ?
 1. avoid unnecessary value copies
+- By default, in Go programs, when a variable is passed in a function,
+go automatically creates a copy of the value of that variable in the memory (which means the copied value gets a new address), and then this copied value is passed into tha function,
+and is used until the execution of the function is completed. 
+Note- There is garbage collector which will eventually delete this copied valued from the memory automatically.
+If there are large and complex values, then it will take too much space in the memory. 
+With pointers, only one is stored and address of the value is passed in the function.
 2. directly mutate values
+- since,the adress of the value is passed in the function, you can directly make cahnges in the original value
+no need to return value, 
+can lead to less code but less understandable code.
