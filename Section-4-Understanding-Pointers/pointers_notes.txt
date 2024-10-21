@@ -24,4 +24,7 @@ can lead to less code but less understandable code.
 You put & sign before the varaible to get the address (agePointer := &age)
 and you put * sign before the pointer variable to get the value (dereferncing) (ageValue := *agePointer |or *(&age)| )
 
+More information :-
+You cannot perform calculations on pointers
+
 
