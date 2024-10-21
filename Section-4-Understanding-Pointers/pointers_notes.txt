@@ -21,5 +21,7 @@ With pointers, only one is stored and address of the value is passed in the func
 no need to return value, 
 can lead to less code but less understandable code.
 
-You put & sign before the varaible to get the address
-and you put * sign before the variable to get the value (dereferncing)
+You put & sign before the varaible to get the address (agePointer := &age)
+and you put * sign before the pointer variable to get the value (dereferncing) (ageValue := *agePointer |or *(&age)| )
+
+
