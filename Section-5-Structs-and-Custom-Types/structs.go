@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"time"
+	"errors"
 )
 
 type User struct {
@@ -23,7 +24,10 @@ func (u *User) clearUserName() {
 }
 
 // constructor function
-func newUser(firstName, lastName, birthdate string) *User {
+func newUser(firstName, lastName, birthdate string) (*User, error) {
+	if firstName == "" || lastName == "" || birthdate == "" {
+		return nil, errors.New("Empty fields are invalid")
+	}
 	return &User{
 		firstName: firstName,
 		lastName:  lastName,
@@ -56,9 +60,12 @@ func main() {
 		}*/
 
 	// also write using constructor
-	appUser := *newUser(userFirstName,
-		userLastName,
-		userBirthdate)
+	var appUser *User
+	appUser, err := newUser(userFirstName, userLastName, userBirthdate)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
 
 	appUser.outputUserData()
 	appUser.clearUserName()
@@ -69,6 +76,6 @@ func main() {
 func getUserData(promptText string) string {
 	fmt.Print(promptText)
 	var value string
-	fmt.Scan(&value)
+	fmt.Scanln(&value)
 	return value
 }
