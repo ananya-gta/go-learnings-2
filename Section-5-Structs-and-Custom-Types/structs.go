@@ -13,9 +13,15 @@ type User struct {
 }
 
 // function in struct where it is used as a receiver
-func (u User) outputUserData() {
+func (u *User) outputUserData() {
 	fmt.Println(u.firstName, u.lastName, u.birthdate, u.craetedAt)
 }
+
+func (u *User) clearUserName() {
+	u.firstName = ""
+	u.lastName = ""
+}
+
 
 func main() {
 	userFirstName := getUserData("Please enter your first name: ")
@@ -40,6 +46,8 @@ func main() {
 			time.Now(),
 		}*/
 
+	appUser.outputUserData()
+	appUser.clearUserName()
 	appUser.outputUserData()
 
 }
