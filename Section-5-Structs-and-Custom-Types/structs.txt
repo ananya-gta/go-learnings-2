@@ -1,0 +1,2 @@
+-- What are structs?
+Struct are a data structure that let you group data & functions into collections.
