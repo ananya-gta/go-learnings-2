@@ -12,6 +12,11 @@ type User struct {
 	craetedAt time.Time
 }
 
+// function in struct where it is used as a receiver
+func (u User) outputUserData() {
+	fmt.Println(u.firstName, u.lastName, u.birthdate, u.craetedAt)
+}
+
 func main() {
 	userFirstName := getUserData("Please enter your first name: ")
 	userLastName := getUserData("Please enter your last name: ")
@@ -35,7 +40,7 @@ func main() {
 			time.Now(),
 		}*/
 
-	outputUserData(appUser)
+	appUser.outputUserData()
 
 }
 
@@ -46,6 +51,4 @@ func getUserData(promptText string) string {
 	return value
 }
 
-func outputUserData(u User) {
-	fmt.Println(u.firstName, u.lastName, u.birthdate, u.craetedAt)
-}
+
