@@ -22,6 +22,15 @@ func (u *User) clearUserName() {
 	u.lastName = ""
 }
 
+// constructor function
+func newUser(firstName, lastName, birthdate string) *User {
+	return &User{
+		firstName: firstName,
+		lastName:  lastName,
+		birthdate: birthdate,
+		craetedAt: time.Now(),
+	}
+} // you can also return a pointer so that no copy is created
 
 func main() {
 	userFirstName := getUserData("Please enter your first name: ")
@@ -31,13 +40,13 @@ func main() {
 	// var appUser User
 
 	// struct literal
-	appUser := User{
+	/*appUser := User{
 		firstName: userFirstName,
 		lastName:  userLastName,
 		birthdate: userBirthdate,
 		craetedAt: time.Now(),
 	}
-	/*
+
 		also write like this, make sure that order is same
 		appUser = User{
 			userFirstName ,
@@ -45,6 +54,11 @@ func main() {
 			userBirthdate,
 			time.Now(),
 		}*/
+
+	// also write using constructor
+	appUser := *newUser(userFirstName,
+		userLastName,
+		userBirthdate)
 
 	appUser.outputUserData()
 	appUser.clearUserName()
@@ -58,5 +72,3 @@ func getUserData(promptText string) string {
 	fmt.Scan(&value)
 	return value
 }
-
-
