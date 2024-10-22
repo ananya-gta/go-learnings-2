@@ -37,6 +37,7 @@ func main() {
 			return
 		}
 
+		// struct embedding
 	admin := userStruct.NewAdmin("test@example.com", "test@123")
 	admin.UserDetails.ClearUserName()
 	admin.UserDetails.OutputUserData()

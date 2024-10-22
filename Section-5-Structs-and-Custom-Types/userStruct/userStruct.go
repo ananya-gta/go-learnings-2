@@ -18,6 +18,7 @@ type User struct {
 type Admin struct {
 	email string
 	password string
+	// struct embedding
 	UserDetails User
 }
 

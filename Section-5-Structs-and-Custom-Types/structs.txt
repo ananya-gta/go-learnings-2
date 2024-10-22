@@ -1,2 +1,8 @@
 -- What are structs?
 Struct are a data structure that let you group data & functions into collections.
+
+-- If you have a method that wants to edit a struct, 
+you must make sure that it receives a pointer to that struct as a receiver argument.
+Otherwise, it will get a copy and just edit that copy. 
+
+-- same goes for contruction function, 
