@@ -37,6 +37,10 @@ func main() {
 			return
 		}
 
+	admin := userStruct.NewAdmin("test@example.com", "test@123")
+	admin.UserDetails.ClearUserName()
+	admin.UserDetails.OutputUserData()
+
 	appUser.OutputUserData()
 	appUser.ClearUserName()
 	appUser.OutputUserData()

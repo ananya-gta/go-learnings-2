@@ -12,6 +12,13 @@ type User struct {
 	lastName  string
 	birthdate string
 	craetedAt time.Time
+
+}
+
+type Admin struct {
+	email string
+	password string
+	UserDetails User
 }
 
 // function in struct where it is used as a receiver
@@ -36,3 +43,16 @@ func NewUser(firstName, lastName, birthdate string) (*User, error) {
 		craetedAt: time.Now(),
 	}, nil
 } // you can also return a pointer so that no copy is created
+
+func NewAdmin(email, password string) Admin {
+	return Admin {
+		email: email, 
+		password: password, 
+		UserDetails: User {
+			firstName: "ADMIN",
+			lastName: "Admin",
+			birthdate: "----",
+			craetedAt: time.Now(),
+		},
+	}
+}
