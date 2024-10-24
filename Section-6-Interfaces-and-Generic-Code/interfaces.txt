@@ -1,0 +1,48 @@
+-- if you want to accept any type  of value 
+>> func printSomething(value interface{}) {
+ // now you can take any type of value as an argument to this function
+    switch value.(type) {
+        case int:
+            // ......
+        case type2:
+            // .....
+        case type3:
+            // ......
+        default:
+            // ..
+    }
+
+
+>>> This syntax is used to assert that the interface variable value actually holds a value of type int.
+    typedVal, ok :=  value.(int)
+    if ok {
+            fmt.Printf("Value is an int: %d\n", typedVal)
+    } else {
+            fmt.Println("Value is not an int")
+    }
+
+
+>>> typedVal: This will hold the value of value if the assertion is successful.
+ok: This is a boolean that indicates whether the assertion was successful (true) or not (false).
+
+
+}
+
+
+-- embedded interfaces
+>> type interface1 interface {
+    Func1() int
+}
+
+>> type interface2 interface {
+    Func2()
+}
+
+>>> type embeddedInterface interface {
+    interface1
+    interface2
+    Func3() 
+    Func4() string
+}
+
+

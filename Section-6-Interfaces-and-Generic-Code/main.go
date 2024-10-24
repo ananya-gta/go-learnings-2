@@ -10,6 +10,10 @@ import (
 	"example.com/note-taking-app/todo"
 )
 
+type saver interface {
+	Save() error 
+}
+
 func main() {
 	title, content := getNoteData() 
 	userNote, err := noteStruct.New(title, content)
