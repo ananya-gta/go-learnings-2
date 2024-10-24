@@ -1,0 +1,42 @@
+>> func main () {
+    // now you cannot write like this
+    >> result genericFuncAdd(1, 2) bcz go will not able to understand what is the type of result it will consider it as interface{}, you cannot perform any operation on result, like result + 1
+    // so comes the generic function
+}
+
+>> func add (a, b interface{}) interface{} {
+    aInt, bInt  := a.(int), b.(int)
+    return aInt + bInt
+
+    aFloat, bFloat   := a.(float64), b.(float64)
+    return aFloat + bFloat
+
+    aString, bString  := a.(string), b.(string)
+    return aString + bString
+}
+
+
+
+>> T is a placeholder here
+>> func genericFuncAdd[T any] (a, b T) T {
+    aInt, aIsInt  := a.(int)
+    bInt, bIsInt := b.(int)
+    if aIsInt && bIsInt {
+        return aInt + bInt
+    }
+
+    aFloat, bFloat   := a.(float64), b.(float64)
+    return aFloat + bFloat
+
+    aString, bString  := a.(string), b.(string)
+    return aString + bString
+}
+
+
+>> func genericFuncAdd[T any, K any] (a, b T) K
+
+
+also write like this to fix above problem
+>> func add[T int |float64|string] (a, b T) T {
+    return a + b
+}
