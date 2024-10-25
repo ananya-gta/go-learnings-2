@@ -29,7 +29,8 @@ func main() {
 }
 
 func dynamicArray() {
-	dynamic := []float64{}
+	dynamic := []float64{1, 2}
 	dynamic[1] = 19.99
 	fmt.Println(append(dynamic, 2.99))
+	fmt.Println(dynamic)
 }
