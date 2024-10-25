@@ -25,4 +25,11 @@ func main() {
 
 	fmt.Println(len(featuredPrices), cap(featuredPrices))
 	fmt.Println(len(highlightedPrices), cap(highlightedPrices))
+	dynamicArray()
+}
+
+func dynamicArray() {
+	dynamic := []float64{}
+	dynamic[1] = 19.99
+	fmt.Println(append(dynamic, 2.99))
 }
