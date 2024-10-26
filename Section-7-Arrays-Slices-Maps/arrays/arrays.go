@@ -1,5 +1,12 @@
 package main
 import "fmt"
+import "reflect"
+
+type Product struct {
+	id int
+	title string
+	price float64
+}
 
 func main() {
 	var productNames [4]string = [4]string{"A Book"}
@@ -47,9 +54,14 @@ func hobbies() {
 	slice1 = append(slice1, hobbies[2])
 	slice1 = slice1[1:]
 	fmt.Println(slice1)
-
+	courseGoals := []string{"Learning", "writing"} // this is a slice
+	courseGoals2 := [2]string{"Learning", "writing"} // this is an array
+	fmt.Println(reflect.TypeOf(courseGoals))
+	fmt.Println(reflect.TypeOf(courseGoals2))
+	courseGoals[1] = "learning go"
+	fmt.Println(append(courseGoals, "writing"))
 	
-	
+	products := []Product{{1, "Shampoo", 12.99},  {2, "Soap", 9.99}}
 
-
+	fmt.Println(products)
 }
