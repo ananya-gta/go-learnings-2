@@ -1,4 +1,5 @@
 package main
+
 import "fmt"
 import "reflect"
 
@@ -8,7 +9,7 @@ type Product struct {
 	price float64
 }
 
-func main() {
+func arrays() {
 	var productNames [4]string = [4]string{"A Book"}
 	prices := [4]float64{10.99, 9.99, 45.99, 20.0}
 	fmt.Println(prices)
