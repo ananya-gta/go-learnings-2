@@ -60,6 +60,8 @@ func hobbies() {
 	fmt.Println(reflect.TypeOf(courseGoals2))
 	courseGoals[1] = "learning go"
 	fmt.Println(append(courseGoals, "writing"))
+	// append one slice into another
+	fmt.Println(append(courseGoals, courseGoals...))
 	
 	products := []Product{{1, "Shampoo", 12.99},  {2, "Soap", 9.99}}
 
