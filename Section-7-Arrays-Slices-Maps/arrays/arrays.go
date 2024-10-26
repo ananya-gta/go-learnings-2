@@ -26,6 +26,7 @@ func main() {
 	fmt.Println(len(featuredPrices), cap(featuredPrices))
 	fmt.Println(len(highlightedPrices), cap(highlightedPrices))
 	dynamicArray()
+	hobbies()
 }
 
 func dynamicArray() {
@@ -33,4 +34,22 @@ func dynamicArray() {
 	dynamic[1] = 19.99
 	fmt.Println(append(dynamic, 2.99))
 	fmt.Println(dynamic)
+}
+
+func hobbies() {
+	hobbies :=  []string{"reading", "swimming", "gaming"}
+	fmt.Println(hobbies)
+	fmt.Println(hobbies[0])
+	fmt.Println(hobbies[1:3])
+	slice1 :=  hobbies[0:2]
+	fmt.Println(slice1)
+	fmt.Println(cap(slice1))
+	slice1 = append(slice1, hobbies[2])
+	slice1 = slice1[1:]
+	fmt.Println(slice1)
+
+	
+	
+
+
 }
