@@ -53,6 +53,11 @@ func useOfMake() {
 	// working with alisases - customtypes
 	courseRatings := make(floatMap, 6)
 	courseRatings.output()
+
+	// for loop in arrays, maps
+	for index, value := range user {
+		fmt.Println(index, value)
+	}
 }
 
 func (m floatMap) output() {
