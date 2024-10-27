@@ -1,5 +1,5 @@
 >> What are pointers ?
-- Pointers are variabels taht store dthe value addresess instead of value
+- Pointers are variabels that store dthe value addresess instead of value
 
 age := 32
 when a variable is assigned a value, that value is stored in computer's memory 

@@ -1,0 +1,7 @@
+Parameters: Placeholders in the function definition 
+>> func add(x int, y int) int {
+        return x + y
+    }
+
+Arguments: Actual values passed to the function during a call 
+>> result := add(3, 5) // Here, 3 and 5 are arguments
