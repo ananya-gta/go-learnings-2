@@ -1,3 +1,5 @@
+
+// This file has examples for factory functions, anonymous functions, closures, function passed as parameters and arguments
 package main
 
 import "fmt"
@@ -5,7 +7,7 @@ import "fmt"
 // custom type
 type transformFn func(int) int
 
-func main() {
+func functions() {
 	numbers := []int{1, 2, 3, 4, 5}
 	moreNumbers := []int{7, 2, 3, 4, 5}
 	doubled := transformNumbers(&numbers, double)
