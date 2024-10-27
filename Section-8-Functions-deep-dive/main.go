@@ -20,9 +20,13 @@ func main() {
 	//gettting the new array by passing an array and function to the function
 	tranformNumbers := transformNumbers(&numbers, transformFun1)
 	tranformMoreNumbers := transformNumbers(&moreNumbers, transformFun2)
-	
+
 	fmt.Println(tranformNumbers)
 	fmt.Println(tranformMoreNumbers)
+
+	//here you will not be passing a named func but an anonymous function as argument
+	// defining function just in time
+	doubleNumbersAnonymously(&numbers, func(number int) int { return number * 2 })
 }
 
 func transformNumbers(numbers *[]int, transform transformFn) []int {
@@ -48,4 +52,13 @@ func getTransformedFunc(numbers *[]int) transformFn {
 	} else {
 		return triple
 	}
+}
+
+// anonymous functions
+func doubleNumbersAnonymously(numbers *[]int, transform func(int) int) []int {
+	doubleNumbers := []int{}
+	for _, number := range *numbers {
+		doubleNumbers = append(doubleNumbers, transform(number))
+	}
+	return doubleNumbers
 }
