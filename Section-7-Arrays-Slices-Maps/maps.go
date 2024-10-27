@@ -2,6 +2,11 @@ package main
 
 import "fmt"
 
+// custom types
+type floatMap  map[float64]float64 
+
+
+
 func main() {
 	websites := map[string]string{
 		"Google": "https://www.google.com",
@@ -28,11 +33,11 @@ func main() {
 // use of make function
 func useOfMake() {
 	user := make([]string, 2) // this created an empty array of size 2
+	user[0] = "John"
 	// the below user names will be appended after the 2 empty spaces
 	user = append(user, "Ananya")
 	user = append(user, "Kartik")
-	fmt.Println(len(user))
-
+	fmt.Println(user)
 
 	// In Go, the make function is used to initialize slices, maps, and channels. 
 	// It allocates and initializes the data structure, making it ready for use.
@@ -43,4 +48,13 @@ func useOfMake() {
 	myMap := make(map[string]int, 10) // Creates a map with a capacity of 10
 	fmt.Println(myMap)
 	// Using make is essential in Go when dealing with these types to ensure they are properly allocated before use.
+
+
+	// working with alisases - customtypes
+	courseRatings := make(floatMap, 6)
+	courseRatings.output()
+}
+
+func (m floatMap) output() {
+	fmt.Println(m)
 }
