@@ -17,3 +17,8 @@ func main() {
 	delete(websites, "Facebook")
 	fmt.Println(websites)
 }
+
+// maps vs structs
+/* 	Maps: Key-value pairs, dynamic size, unordered, flexible for quick lookups.
+	Structs: Fixed fields, structured data, ordered, suitable for complex data types.
+*/
