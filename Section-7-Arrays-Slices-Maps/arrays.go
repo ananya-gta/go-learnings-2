@@ -55,7 +55,7 @@ func hobbies() {
 	slice1 = append(slice1, hobbies[2])
 	slice1 = slice1[1:]
 	fmt.Println(slice1)
-	courseGoals := []string{"Learning", "writing"} // this is a slice
+	courseGoals := []string{"Learning", "writing"} // this is a slice - a slice is just window into an array
 	courseGoals2 := [2]string{"Learning", "writing"} // this is an array
 	fmt.Println(reflect.TypeOf(courseGoals))
 	fmt.Println(reflect.TypeOf(courseGoals2))
