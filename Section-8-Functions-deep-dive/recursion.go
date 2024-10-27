@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func main() {
+func recursion() {
 	fmt.Println(factorial(5))
 }
 
