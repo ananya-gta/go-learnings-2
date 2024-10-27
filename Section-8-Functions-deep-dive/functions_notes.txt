@@ -5,3 +5,12 @@ Parameters: Placeholders in the function definition
 
 Arguments: Actual values passed to the function during a call 
 >> result := add(3, 5) // Here, 3 and 5 are arguments
+
+
+
+
+
+// every anonymous function is a closure
+// a closure is a function that has access to its own scope and the scope of its outer functions
+// you learned about factory functions, anonymous functions, closures, function passed as parameters and arguments
+

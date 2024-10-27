@@ -27,6 +27,16 @@ func main() {
 	//here you will not be passing a named func but an anonymous function as argument
 	// defining function just in time
 	doubleNumbersAnonymously(&numbers, func(number int) int { return number * 2 })
+
+	// createTransformer is now a factory function which produces functions
+	// you can create a double function like this
+	double1 :=  factoryFunction(2)
+	fmt.Println(double1(10))
+	// or triple function like this
+	triple1 := factoryFunction(3)
+	fmt.Println(triple1(15))
+	doubledThroughFactoryFunction := transformNumbers(&numbers, double1)
+	fmt.Println(doubledThroughFactoryFunction)
 }
 
 func transformNumbers(numbers *[]int, transform transformFn) []int {
@@ -62,3 +72,12 @@ func doubleNumbersAnonymously(numbers *[]int, transform func(int) int) []int {
 	}
 	return doubleNumbers
 }
+
+// the below function produces a function
+func factoryFunction(factor int) func(int) int {
+	return func(number int) int {
+		return number * factor
+	}
+}
+
+
