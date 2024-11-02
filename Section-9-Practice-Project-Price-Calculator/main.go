@@ -1,7 +1,7 @@
 package main
 
 // import "fmt"
-import "example.com/price-calculator/prices"
+import ("example.com/price-calculator/prices")
 
 func main() {
 	taxRates := []float64{0, 0.1, 0.7, 0.11}
