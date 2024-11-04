@@ -4,7 +4,8 @@ import (
 	"fmt"
 
 	"example.com/price-calculator/conversion"
-	"example.com/price-calculator/fileManager"
+	// "example.com/price-calculator/fileManager"
+	"example.com/price-calculator/iomanager"
 )
 
 type TaxIncludedPriceJob struct {
@@ -14,23 +15,27 @@ type TaxIncludedPriceJob struct {
 	This means that when an instance of TaxIncludedPriceJob is encoded to JSON,
 	the IOManager field will not be included in the resulting JSON object.
 	Similarly, when decoding JSON into the struct, any JSON properties corresponding to IOManager will be ignored. */
-	IOManager         fileManager.FileManager `json:"-"`
-	TaxRate           float64                 `json:"tax_rate"`
-	InputPrices       []float64               `json:"input_prices"`
-	TaxIncludedPrices map[string]string       `json:"tax_included_prices"`
+	IOManager         iomanager.IOManager `json:"-"`
+	TaxRate           float64             `json:"tax_rate"`
+	InputPrices       []float64           `json:"input_prices"`
+	TaxIncludedPrices map[string]string   `json:"tax_included_prices"`
 }
 
-func NewTaxIncludedPriceJob(fm fileManager.FileManager, taxRate float64) *TaxIncludedPriceJob {
+func NewTaxIncludedPriceJob(iom iomanager.IOManager, taxRate float64) *TaxIncludedPriceJob {
 	return &TaxIncludedPriceJob{
-		IOManager:   fm,
+		IOManager:   iom,
 		TaxRate:     taxRate,
 		InputPrices: []float64{10, 20, 30},
 	}
 }
 
-func (job *TaxIncludedPriceJob) Process() {
+func (job *TaxIncludedPriceJob) Process() error{
 	// read prices from txt file
-	job.LoadData()
+	err := job.LoadData()
+	if err != nil {
+		return  err
+
+	}
 
 	result := make(map[string]string)
 	for _, price := range job.InputPrices {
@@ -40,7 +45,7 @@ func (job *TaxIncludedPriceJob) Process() {
 
 	job.TaxIncludedPrices = result
 
-	job.IOManager.WriteFile(job.TaxIncludedPrices)
+	return job.IOManager.WriteFile(job)
 
 }
 
