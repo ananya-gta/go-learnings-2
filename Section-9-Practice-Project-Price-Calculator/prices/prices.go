@@ -10,7 +10,7 @@ import (
 type TaxIncludedPriceJob struct {
 	TaxRate           float64
 	InputPrices       []float64
-	TaxIncludedPrices map[string]float64
+	TaxIncludedPrices map[string]string
 }
 
 func NewTaxIncludedPriceJob(taxRate float64) *TaxIncludedPriceJob {
@@ -29,15 +29,19 @@ func (job *TaxIncludedPriceJob) Process() {
 		taxIncludedPrice := price * (1 + job.TaxRate)
 		result[fmt.Sprintf("%.2f", price)] = fmt.Sprintf("%.2f", taxIncludedPrice)
 	}
-	fmt.Println(result)
+	
+	job.TaxIncludedPrices = result
+
+	fileManager.WriteFile(fmt.Sprintf("result_%.0f.json", job.TaxRate*100),  job.TaxIncludedPrices)
+
 }
 
-func (job TaxIncludedPriceJob) LoadData() {
+func (job *TaxIncludedPriceJob) LoadData() error{
 	//read lines from file
 	lines, err := fileManager.ReadLines("prices.txt")
 	if err != nil {
 		fmt.Println("error occured while reading lines from file: ", err)
-		return
+		return err
 	}
 
 	// convert each string line into float64 and store it into InputPrices
@@ -45,9 +49,11 @@ func (job TaxIncludedPriceJob) LoadData() {
 
 	if err != nil {
 		fmt.Println("error occured while converting string to float64: ", err)
-		return
+		return err
 	}
 
 	job.InputPrices = prices
+
+	return nil
 
 }
