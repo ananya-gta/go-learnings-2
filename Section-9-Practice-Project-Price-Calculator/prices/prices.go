@@ -8,15 +8,21 @@ import (
 )
 
 type TaxIncludedPriceJob struct {
-	IOManager         fileManager.FileManager
-	TaxRate           float64
-	InputPrices       []float64
-	TaxIncludedPrices map[string]string
+	/* The backtick notation (`json:"-"`) is a struct tag.
+	In this case, json:"-" tells the JSON marshalling/unmarshalling process to ignore this field
+	when converting the struct to or from JSON.
+	This means that when an instance of TaxIncludedPriceJob is encoded to JSON,
+	the IOManager field will not be included in the resulting JSON object.
+	Similarly, when decoding JSON into the struct, any JSON properties corresponding to IOManager will be ignored. */
+	IOManager         fileManager.FileManager `json:"-"`
+	TaxRate           float64                 `json:"tax_rate"`
+	InputPrices       []float64               `json:"input_prices"`
+	TaxIncludedPrices map[string]string       `json:"tax_included_prices"`
 }
 
 func NewTaxIncludedPriceJob(fm fileManager.FileManager, taxRate float64) *TaxIncludedPriceJob {
 	return &TaxIncludedPriceJob{
-		IOManager: fm,
+		IOManager:   fm,
 		TaxRate:     taxRate,
 		InputPrices: []float64{10, 20, 30},
 	}
