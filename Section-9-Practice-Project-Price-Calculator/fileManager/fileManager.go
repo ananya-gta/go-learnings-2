@@ -46,16 +46,14 @@ func (fm FileManager) WriteFile(data interface{}) error {
 		return errors.New("failed to create a file")
 	}
 
-	encoder := json.NewEncoder(file)
-	encoder.Encode(data)
+	defer file.Close() // Ensure the file is closed after we're done
 
-	if err != nil {
-		file.Close()
-		return errors.New("failed to convert data into JSON")
-	}
+    encoder := json.NewEncoder(file)
+    if err := encoder.Encode(data); err != nil {
+        return errors.New("failed to convert data into JSON: " + err.Error())
+    }
 
-	file.Close()
-	return nil
+    return nil
 }
 
 func New(inputPath, outputPath string) FileManager{
