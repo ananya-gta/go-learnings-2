@@ -8,13 +8,15 @@ import (
 )
 
 type TaxIncludedPriceJob struct {
+	IOManager         fileManager.FileManager
 	TaxRate           float64
 	InputPrices       []float64
 	TaxIncludedPrices map[string]string
 }
 
-func NewTaxIncludedPriceJob(taxRate float64) *TaxIncludedPriceJob {
+func NewTaxIncludedPriceJob(fm fileManager.FileManager, taxRate float64) *TaxIncludedPriceJob {
 	return &TaxIncludedPriceJob{
+		IOManager: fm,
 		TaxRate:     taxRate,
 		InputPrices: []float64{10, 20, 30},
 	}
@@ -29,16 +31,16 @@ func (job *TaxIncludedPriceJob) Process() {
 		taxIncludedPrice := price * (1 + job.TaxRate)
 		result[fmt.Sprintf("%.2f", price)] = fmt.Sprintf("%.2f", taxIncludedPrice)
 	}
-	
+
 	job.TaxIncludedPrices = result
 
-	fileManager.WriteFile(fmt.Sprintf("result_%.0f.json", job.TaxRate*100),  job.TaxIncludedPrices)
+	job.IOManager.WriteFile(job.TaxIncludedPrices)
 
 }
 
-func (job *TaxIncludedPriceJob) LoadData() error{
+func (job *TaxIncludedPriceJob) LoadData() error {
 	//read lines from file
-	lines, err := fileManager.ReadLines("prices.txt")
+	lines, err := job.IOManager.ReadLines()
 	if err != nil {
 		fmt.Println("error occured while reading lines from file: ", err)
 		return err

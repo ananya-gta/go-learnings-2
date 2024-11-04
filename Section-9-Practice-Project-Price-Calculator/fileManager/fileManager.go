@@ -8,8 +8,14 @@ import (
 	"encoding/json"
 )
 
-func ReadLines(path string) ([]string, error) {
-	file, err := os.Open(path)
+type FileManager struct {
+	InputFilepath string
+	OutputFilepath string
+}
+
+// below it does not matter you use a pointer as a receiver or simple struct because here we are just reading the data not updating any value
+func (fm FileManager) ReadLines() ([]string, error) {
+	file, err := os.Open(fm.InputFilepath)
 	if err != nil {
 
 		return nil, errors.New("an eror occured while opening the file")
@@ -33,8 +39,8 @@ func ReadLines(path string) ([]string, error) {
 }
 
 
-func WriteFile(path string,  data interface{}) error {
-	file, err := os.Create(path)
+func (fm FileManager) WriteFile(data interface{}) error {
+	file, err := os.Create(fm.OutputFilepath)
 
 	if err != nil {
 		return errors.New("failed to create a file")
@@ -52,3 +58,9 @@ func WriteFile(path string,  data interface{}) error {
 	return nil
 }
 
+func New(inputPath, outputPath string) FileManager{
+	return FileManager{
+		InputFilepath: inputPath,
+		OutputFilepath: outputPath,
+	}
+}
