@@ -81,4 +81,19 @@
 // Close the channel
 >> close(ch)  
 
+--------------------------------------------------------------
+
+The select statement allows a goroutine to wait on multiple channel operations. 
+It blocks until one of the channels can proceed (i.e., until one of the operations on channels can be executed).
+
+
+   select {
+   case msg1 := <-ch1:
+      fmt.Println("Received from channel 1:", msg1)
+   case msg2 := <-ch2:
+      fmt.Println("Received from channel 2:", msg2)
+   case <-time.After(time.Second): // Timeout if nothing happens in 1 second
+      fmt.Println("Timed out")
+   }
+
 
