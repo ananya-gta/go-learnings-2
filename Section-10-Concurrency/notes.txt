@@ -1,0 +1,48 @@
+>> Goroutines enable concurrent execution of functions. Goroutines allow you to run multiple tasks simultaneously.
+>> Goroutines are much lighter than traditional threads. 
+   You can create thousands of goroutines in a single program without significant overhead.
+>> To create a goroutine, you simply prefix a function call with the go keyword.\
+
+>> func main() {
+      go greet("Nice to meet you!")
+      go greet("How are you?")
+      go slowGreet("How ... are ... you ...?")
+      go greet("I hope you're liking the course!")
+   }
+
+   For the above code nothing will be printed because  after starting all the goroutines, 
+   the main goroutine (the one executing main()) finishes and exits quickly. 
+   When the main goroutine exits, it terminates the entire program, 
+   which means the program doesn't wait long enough for the other goroutines to finish.
+
+   To fix above problem, we use go channels, but there is an alternative also 
+   (sync.WaitGroup)
+
+   >> func main() {
+         var wg sync.WaitGroup
+
+         // Increment the counter for each goroutine you start
+         wg.Add(4)
+
+         // Start the goroutines
+         go func() {
+            defer wg.Done() // Decrement the counter when the goroutine completes
+            greet("Nice to meet you!")
+         }()
+         go func() {
+            defer wg.Done()
+            greet("How are you?")
+         }()
+         go func() {
+            defer wg.Done()
+            slowGreet("How ... are ... you ...?")
+         }()
+         go func() {
+            defer wg.Done()
+            greet("I hope you're liking the course!")
+         }()
+
+         // Wait for all goroutines to finish
+         wg.Wait()
+      }
+
