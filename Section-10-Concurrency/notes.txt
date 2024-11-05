@@ -65,3 +65,20 @@
    value := <-ch   
    // Receive data from the channel and store it in 'value'
 
+---------------------------------------------------------------
+  
+  // This function can only send data into the channel
+   func sendData(ch chan<- int) {
+      ch <- 42
+   }
+
+   // This function can only receive data from the channel
+   func receiveData(ch <-chan int) int {
+      return <-ch
+   }
+
+
+// Close the channel
+>> close(ch)  
+
+
