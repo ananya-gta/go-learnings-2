@@ -6,7 +6,7 @@ when a variable is assigned a value, that value is stored in computer's memory
 and the value automatically get's an address.
 
 ageAddress := &age
-using &, this operator is used to get and store the address of a value
+	using &, this operator is used to get and store the address of a value
 
 >> What are the advantages of pointers ?
 1. avoid unnecessary value copies

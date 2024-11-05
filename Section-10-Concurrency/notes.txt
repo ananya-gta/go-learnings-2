@@ -14,7 +14,8 @@
    the main goroutine (the one executing main()) finishes and exits quickly. 
    When the main goroutine exits, it terminates the entire program, 
    which means the program doesn't wait long enough for the other goroutines to finish.
-
+   
+   ---------------------------------------------------------------------------------------------------------------------------------------
    To fix above problem, we use go channels, but there is an alternative also 
    (sync.WaitGroup)
 
@@ -46,3 +47,9 @@
          wg.Wait()
       }
 
+
+------------------------------------------------------------------------------------------------------------------------------------------
+>> In Go, channels are a powerful feature used for communication between goroutines.
+>> Channels help you coordinate and pass data between goroutines, making it easier to write concurrent programs. 
+   You can think of a channel as a pipe through which data flows: one goroutine sends data through the channel, 
+   and another goroutine receives that data.

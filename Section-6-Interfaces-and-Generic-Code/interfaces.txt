@@ -14,7 +14,7 @@
 
 
 >>> This syntax is used to assert that the interface variable value actually holds a value of type int.
-    typedVal, ok :=  value.(int)
+	typedVal, ok :=  value.(int)
     if ok {
             fmt.Printf("Value is an int: %d\n", typedVal)
     } else {
