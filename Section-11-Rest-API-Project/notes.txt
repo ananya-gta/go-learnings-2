@@ -36,6 +36,7 @@ c.Next(): Passes the context to the next handler or middleware in the chain.
 >> In the context of Gin, middleware functions sit between the incoming request and the final request handler.
  Middleware is used to perform tasks like logging, security checks, request modification, response modification, and more.
 
+>> The `binding:"required"` tag indicates that the field in the struct is mandatory and must be provided.
 
 
 
@@ -43,5 +44,3 @@ c.Next(): Passes the context to the next handler or middleware in the chain.
 
 
 
-
- 
