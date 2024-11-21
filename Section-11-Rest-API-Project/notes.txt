@@ -1,0 +1,4 @@
+>> API --> To exchange data between client and the server, we create endpoints (HTTP method + URL cmbination) 
+through which HTTP requests are snet in JSON format.
+
+>> 
