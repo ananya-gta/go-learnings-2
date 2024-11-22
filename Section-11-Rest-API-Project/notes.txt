@@ -38,7 +38,8 @@ c.Next(): Passes the context to the next handler or middleware in the chain.
 
 >> The `binding:"required"` tag indicates that the field in the struct is mandatory and must be provided.
 
-
+>> When you're fetching the data from the db => use `Query()` and
+when you're manipulating the data in the db => use `Exec()`.
 
 
 
