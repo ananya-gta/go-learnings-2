@@ -2,10 +2,11 @@ package main
 
 import (
 	"net/http"
+	"strconv"
 
+	"example.com/building-a-rest-api/db"
 	"example.com/building-a-rest-api/models"
 	"github.com/gin-gonic/gin"
-	"example.com/building-a-rest-api/db"
 )
 
 func main() {
@@ -15,6 +16,7 @@ func main() {
 
 	router.GET("/events", getEvents)
 	router.POST("/create-event", createEvent)
+	router.GET("/events/:id", getEventByID)
 
 	router.Run(":8080")
 }
@@ -48,4 +50,20 @@ func createEvent(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusCreated, gin.H{"message": "event created", "event": event})
+}
+
+func getEventByID(c *gin.Context) {
+	eventID, err := strconv.ParseInt(c.Param("id"), 10, 64)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"message": "could not parse event id" ,"error": err.Error()})
+		return
+	}
+
+	event, err := models.GetEventByID(eventID)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"message": "could not fetch event id" ,"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "Event successfully fetched: ", "event": event})
 }
