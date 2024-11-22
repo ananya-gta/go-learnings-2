@@ -4,7 +4,6 @@ import (
 	"time"
 
 	"example.com/building-a-rest-api/db"
-	// "github.com/aws/aws-sdk-go/private/protocol/query"
 )
 
 type Event struct {
@@ -64,17 +63,37 @@ func GetAllEvents() ([]Event, error) {
 		}
 		events = append(events, e)
 	}
-	
+
 	return events, nil
 }
 
-func GetEventByID(id int64) (*Event, error){
+func GetEventByID(id int64) (*Event, error) {
 	query := "SELECT * FROM events WHERE id = ?"
 	row := db.DB.QueryRow(query, id)
 	var e Event
 	err := row.Scan(&e.ID, &e.Name, &e.Description, &e.Location, &e.DateTime, &e.UserID)
-		if err != nil {
-			return nil, err
-		}
+	if err != nil {
+		return nil, err
+	}
 	return &e, nil
+}
+
+func (e Event) UpdateEventByID() error {
+	query := `
+	UPDATE events
+	SET name = ?, description = ?, location = ?, dateTime = ?
+	WHERE id = ?
+	`
+
+	// Prepare statement for efficiency purpose
+	stmt, err := db.DB.Prepare(query)
+	if err != nil {
+		return err
+	}
+
+	// Make sure to close the statement when the function exits
+	defer stmt.Close()
+
+	_, err = stmt.Exec(e.Name, e.Description, e.Location, e.DateTime, e.UserID)
+	return err
 }

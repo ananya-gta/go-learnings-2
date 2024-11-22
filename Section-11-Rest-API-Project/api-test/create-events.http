@@ -1,0 +1,55 @@
+POST http://localhost:8080/createEvents
+content-type: application/application/json
+
+[
+  {
+    "Name": "Tech Innovators Conference",
+    "Description": "A global gathering of technology experts, innovators, and entrepreneurs discussing the latest trends in AI, machine learning, and blockchain.",
+    "Location": "Silicon Valley Conference Center"
+  },
+  {
+    "Name": "Foodie Festival",
+    "Description": "A gastronomic journey through the world's most exciting cuisines, featuring top chefs, food trucks, and culinary workshops.",
+    "Location": "New York City, Central Park"
+  },
+  {
+    "Name": "Art & Music Fusion",
+    "Description": "An immersive experience combining visual art exhibitions and live music performances, showcasing emerging artists from around the world.",
+    "Location": "Los Angeles Art District"
+  },
+  {
+    "Name": "Summer Sports Spectacular",
+    "Description": "A celebration of athleticism featuring live competitions, celebrity games, and interactive fitness challenges for all ages.",
+    "Location": "Chicago Sports Arena"
+  },
+  {
+    "Name": "Fashion Forward Show",
+    "Description": "The most anticipated fashion event of the year, showcasing the latest trends, designers, and high-profile models from across the globe.",
+    "Location": "Paris Fashion Week, Grand Palais"
+  },
+  {
+    "Name": "Horror Night Extravaganza",
+    "Description": "A spine-chilling event featuring live performances, horror film screenings, and a haunted house experience to thrill horror enthusiasts.",
+    "Location": "Universal Studios, Hollywood"
+  },
+  {
+    "Name": "Startup Pitch Night",
+    "Description": "An evening where aspiring entrepreneurs pitch their ideas to a panel of investors and industry experts in hopes of securing funding and mentorship.",
+    "Location": "San Francisco, Tech Hub"
+  },
+  {
+    "Name": "Global Marathon Challenge",
+    "Description": "A thrilling marathon event attracting runners from all over the world, with various categories for both professionals and amateurs.",
+    "Location": "London Marathon Route"
+  },
+  {
+    "Name": "Classic Car Show",
+    "Description": "A celebration of vintage and classic cars, featuring car shows, auctions, and opportunities to meet collectors and enthusiasts.",
+    "Location": "Detroit Motor Show Grounds"
+  },
+  {
+    "Name": "Science Fiction Expo",
+    "Description": "A futuristic event exploring the world of science fiction literature, film, and interactive experiences, with authors, actors, and fans participating.",
+    "Location": "Seattle Convention Center"
+  }
+]

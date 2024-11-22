@@ -1,8 +1,8 @@
-POST http://localhost:8080/createEvent
+PUT http://localhost:8080/updateEvent/1
 content-type: application/application/json
 
 {
   "Name": "Comic Con Festival",
   "Description": "A fun-filled event featuring the best standup comedians, live performances, and entertainment.",
-  "Location": "Los Angeles Convention Center"
+  "Location": "Paris"
 }
