@@ -5,9 +5,12 @@ import (
 
 	"example.com/building-a-rest-api/models"
 	"github.com/gin-gonic/gin"
+	"example.com/building-a-rest-api/db"
 )
 
 func main() {
+
+	db.InitDB()
 	router := gin.Default()
 
 	router.GET("/events", getEvents)
@@ -35,6 +38,11 @@ func createEvent(c *gin.Context) {
 	event.UserID = 1
 
 	event.Save()
+
+	// if err != nil {
+	// 	c.JSON(http.StatusInternalServerError, gin.H{"message": "Could not create event. Try again later."})
+	// 	return
+	// }
 
 	c.JSON(http.StatusCreated, gin.H{"message": "event created", "event": event})
 }

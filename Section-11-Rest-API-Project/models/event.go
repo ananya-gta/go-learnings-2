@@ -1,9 +1,13 @@
 package models
 
-import "time"
+import (
+	"time"
+
+	"example.com/building-a-rest-api/db"
+)
 
 type Event struct {
-	ID          int
+	ID          int64
 	Name        string    `binding:"required"`
 	Description string    `binding:"required"`
 	Location    string    `binding:"required"`
@@ -13,9 +17,31 @@ type Event struct {
 
 var events = []Event{}
 
-func (e Event) Save() {
-	// later add it to database
-	events = append(events, e)
+func (e Event) Save() error{
+	// add it to database
+	insertQuery := `
+	INSERT INTO events (name, description, location, datetime, user_id)
+	VALUES (?, ?, ?, ?, ?)
+	`
+
+	stmt, err := db.DB.Prepare(insertQuery)
+
+	if err != nil {
+		return err
+	}
+
+	defer stmt.Close()
+
+	// execute the insert query
+	result, err := stmt.Exec(e.Name, e.Description, e.Location, e.DateTime, e.UserID)
+	if err != nil {
+		return err
+	}
+
+	id, err := result.LastInsertId()
+	e.ID = id
+
+	return err
 }
 
 func GetAllEvents() []Event {
