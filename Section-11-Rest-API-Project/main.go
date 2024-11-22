@@ -11,7 +11,7 @@ func main() {
 	router := gin.Default()
 
 	router.GET("/events", getEvents)
-	router.POST("/addEvents", addEvent)
+	router.POST("/create-event", createEvent)
 
 	router.Run(":8080")
 }
@@ -21,7 +21,7 @@ func getEvents(c *gin.Context) {
 	c.JSON(http.StatusOK, events)
 }
 
-func addEvent(c *gin.Context) {
+func createEvent(c *gin.Context) {
 	var event models.Event
 
 	err := c.ShouldBindJSON(&event) // maps the JSON response data directly to the struct
@@ -33,5 +33,8 @@ func addEvent(c *gin.Context) {
 
 	event.ID = 1
 	event.UserID = 1
+
+	event.Save()
+
 	c.JSON(http.StatusCreated, gin.H{"message": "event created", "event": event})
 }

@@ -7,7 +7,7 @@ type Event struct {
 	Name        string    `binding:"required"`
 	Description string    `binding:"required"`
 	Location    string    `binding:"required"`
-	DateTime    time.Time `binding:"required"`
+	DateTime    time.Time 
 	UserID      int
 }
 
@@ -20,8 +20,4 @@ func (e Event) Save() {
 
 func GetAllEvents() []Event {
 	return events
-}
-
-func AddEvent(e Event) {
-	events = append(events, e)
 }
