@@ -1,6 +1,9 @@
 package models
 
-import "example.com/building-a-rest-api/db"
+import (
+	"example.com/building-a-rest-api/db"
+	"example.com/building-a-rest-api/utils"
+)
 
 type User struct {
 	ID       int64
@@ -22,7 +25,13 @@ func (u User) Save() error {
 	// Make sure to close the statement when the function exits
 	defer stmt.Close()
 
-	result, err := stmt.Exec(u.Email, u.Password)
+	// hash the password before saving it into the database
+	hashedPassword, err := utils.HashPassword(u.Password)
+	if err != nil {
+		return err
+	}
+
+	result, err := stmt.Exec(u.Email, hashedPassword)
 	if err != nil {
 		return err
 	}
