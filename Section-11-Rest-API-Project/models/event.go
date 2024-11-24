@@ -39,8 +39,9 @@ func (e Event) Save() error {
 		return err
 	}
 
-	// Retrieve the ID of the newly inserted row
+	// Retrieve the ID of the last inserted row
 	id, err := result.LastInsertId()
+	// update the event id
 	e.ID = id
 
 	return err

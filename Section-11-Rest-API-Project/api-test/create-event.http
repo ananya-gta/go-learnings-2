@@ -2,7 +2,7 @@ POST http://localhost:8080/createEvent
 content-type: application/application/json
 
 {
-  "Name": "Comic Con Festival",
-  "Description": "A fun-filled event featuring the best standup comedians, live performances, and entertainment.",
-  "Location": "Los Angeles Convention Center"
+  "Name": "Tech Innovators Summit",
+  "Description": "A premier event showcasing cutting-edge technology, startups, and groundbreaking innovations in the tech industry.",
+  "Location": "San Francisco Marriott Marquis"
 }
