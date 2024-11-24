@@ -40,6 +40,12 @@ func createEvent(c *gin.Context) {
 }
 
 func createEvents(c *gin.Context) {
+	token := c.Request.Header.Get("Authorization")
+	if token == "" {
+		c.JSON(http.StatusUnauthorized, gin.H{"message": "unauthorized access"})
+		return
+	}
+
 	// Define a slice to hold multiple events
 	var events []models.Event
 
